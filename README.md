@@ -21,7 +21,7 @@ The algorithm reads commit data from a CSV file, calculates an activity score fo
 
    - **Deletions**: While `Deletions` are added linearly, this decision was based on the understanding that removing code or content can also be a significant activity, especially in refactoring or cleanup efforts. However, deletions are often less time-consuming than additions, so they are not multiplied by `Files`, keeping their impact on the score more moderate compared to additions.
 
-   - **Exclusion of Commits**: Since I calculate the score per commit, the number of commits (`Commits`) was initially part of the formula but was removed because each line in the CSV represents one commit and we process a line at a time concurrently. This simplifies the formula, focusing on the content of each commit rather than the frequency of commits.
+   - **Exclusion of Commits**: Since I calculate the score per commit, the number of commits (`Commits`) was initially part of the formula but was removed because each line in the CSV represents one commit and I process a line at a time concurrently. This simplifies the formula, focusing on the content of each commit rather than the frequency of commits.
 
    - **Simplicity and Direct Impact**: The formula is easy to understand and implement while still providing a meaningful representation of repository activity.
    

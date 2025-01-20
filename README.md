@@ -9,17 +9,22 @@ The algorithm reads commit data from a CSV file, calculates an activity score fo
 1. **Reading CSV Data**: The CSV file is read line by line, skipping the header row to avoid parsing errors.
 2. **Activity Score Calculation**: For each commit, an activity score is calculated using the formula:
 
-```
-$$
-\displaystyle\AS = \text{Files} \times \text{Additions} + \text{Deletions}
-$$
-```
+## **Activity Score (AS) = __Files__ x __Additions__ + __Deletions__**
+
+**Decision Behind the Formula**:
+
+   - **Files**: I chose to include the number of files changed (`Files`) because it provides a measure of the breadth of changes within a commit. A commit affecting many files might indicate significant refactoring or feature development, which should be reflected in the activity score.
+
+   - **Multiplication of Files and Additions**: The decision to multiply `Files` by `Additions` (`Files * Additions`) was made to emphasize commits that not only change many files but also add substantial new content. It highlights the depth of development activity, where adding new functionality or content is a key indicator of progress.
+
+   - **Additions**: The `Additions` value represents the lines of code or content added in a commit. We chose to directly incorporate this into the formula because adding new code or content generally signifies development activity, whether it's new features, enhancements, or documentation.
+
+   - **Deletions**: While `Deletions` are added linearly, this decision was based on the understanding that removing code or content can also be a significant activity, especially in refactoring or cleanup efforts. However, deletions are often less time-consuming than additions, so they are not multiplied by `Files`, keeping their impact on the score more moderate compared to additions.
+
+   - **Exclusion of Commits**: Since I calculate the score per commit, the number of commits (`Commits`) was initially part of the formula but was removed because each line in the CSV represents one commit and we process a line at a time concurrently. This simplifies the formula, focusing on the content of each commit rather than the frequency of commits.
+
+   - **Simplicity and Direct Impact**: The formula is easy to understand and implement while still providing a meaningful representation of repository activity.
    
-   Where:
-   - **AS (Activity Score)**: The final score used for ranking.
-   - **Files**: Number of files changed in the commit.
-   - **Additions**: Number of lines added in the commit.
-   - **Deletions**: Number of lines deleted in the commit.
 3. **Ranking**: Repositories are sorted based on their total activity scores in descending order.
 4. **Output**: The top `TopR` (currently set to 10) most active repositories are printed.
 

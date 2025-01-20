@@ -8,8 +8,12 @@ The algorithm reads commit data from a CSV file, calculates an activity score fo
 
 1. **Reading CSV Data**: The CSV file is read line by line, skipping the header row to avoid parsing errors.
 2. **Activity Score Calculation**: For each commit, an activity score is calculated using the formula:
-   
-   \[ AS = \text{Files} \times \text{Additions} + \text{Deletions} \]
+
+```
+$$
+\displaystyle\AS = \text{Files} \times \text{Additions} + \text{Deletions}
+$$
+```
    
    Where:
    - **AS (Activity Score)**: The final score used for ranking.

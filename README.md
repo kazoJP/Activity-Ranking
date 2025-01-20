@@ -65,6 +65,12 @@ main.exe "file\commits.csv"
 go run main.go model.go "file/commits.csv"
 ```
 
+### Run the Tests: Use the following command to run all tests in `test_test.go`:
+
+```sh
+go test
+```
+
 ### Concurrency
 
 The implementation uses Go's goroutines for concurrent processing of CSV records to improve performance, especially in a future with a large dataset. Here's how concurrency is implemented:
